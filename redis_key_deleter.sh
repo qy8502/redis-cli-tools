@@ -32,8 +32,7 @@ while read -ra key_batch; do
 
   # 更新进度条
   percentage=$(echo "$deleted_keys $total_keys" | awk '$2 > 0 {printf "%.2f", $1 / $2 * 100}')
-  tput cuu 1; tput el # 将光标向上移动一行并清除该行
-  printf "Progress: [%-50s] %s%% %s / %s" "$(seq -s= -1 $(echo "$percentage / 2" | awk '{printf "%.0f", $1 / 2}') | tr -d '[:digit:]')" "$percentage" "$deleted_keys" "$total_keys"
+  printf "\rProgress: [%-50s] %s%% %s / %s" "$(seq -s= -1 $(echo "$percentage / 2" | awk '{printf "%.0f", $1 / 2}') | tr -d '[:digit:]')" "$percentage" "$deleted_keys" "$total_keys"
 
 
 
